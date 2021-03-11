@@ -13,11 +13,13 @@ body{
   margin: 0px;
 }
 
+.bodyBackground{
+  background-color: #f8f3f7;
+}
+
 .title{
   color: #4e3474;
 }
-
-
 
 .subtitle{
   color:#9e9e9e;
@@ -28,3 +30,13 @@ body{
   padding: 0 4rem 0 4rem;
 }
 
+
+.panel{
+  width: 48%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 0 0.1rem #f7f5f7;
+}

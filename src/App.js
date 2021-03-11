@@ -7,14 +7,16 @@ import ManageTeam from './ManageTeam';
 
 function App() {
   return (
-    <div>
+    <div className="bodyBackground">
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/new" element={<ManageTeam />} />
-          <Route path="/edit/:id" element={<ManageTeam />} />
-        </Routes>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/new" element={<ManageTeam />} />
+            <Route path="/edit/:id" element={<ManageTeam />} />
+          </Routes>
+        </div>
       </BrowserRouter>
       <Footer />
     </div>
