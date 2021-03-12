@@ -30,9 +30,8 @@ body{
   padding: 0 4rem 0 4rem;
 }
 
-
 .panel{
-  width: 48%;
+  width: 100%;
   margin-top: 2rem;
   margin-bottom: 2rem;
   background-color: white;

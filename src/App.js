@@ -6,6 +6,7 @@ import Main from './Main';
 import ManageTeam from './ManageTeam';
 
 function App() {
+
   return (
     <div className="bodyBackground">
       <BrowserRouter>
