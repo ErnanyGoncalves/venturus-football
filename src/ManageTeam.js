@@ -22,7 +22,7 @@ const ManageTeam = () => {
     }
 
     return (
-        <div>
+        <div className="panel">
             <h1 className="title">{mode === "new" ? "Create your team" : `Edit ${teamName} team`}</h1>
             <form onSubmit={handleSubmit}>
                 <h2 className="subtitle">Team Information</h2>
