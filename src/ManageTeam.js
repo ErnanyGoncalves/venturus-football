@@ -1,24 +1,34 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
 import styles from "./ManageTeam.module.css"
+import { useParams } from 'react-router'
+import { TeamContext } from './TeamContext'
 
 const ManageTeam = () => {
+    const { id } = useParams();
+    const { team,setTeam } = React.useContext(TeamContext);
+    const currentTeam = team[id];
 
     const navigate = useNavigate();
 
-    /** @TODO receber por props ou alguma outra forma pra determinar o modo do uso do componente e pegar o nome do time */
-    const teamName = "props.team.name";
-    const mode = "new";
+    const pathName = window.location.pathname;
+    const mode = pathName === "/new" ? "new" : "edit";
+    const teamName = pathName !== "/new" ? currentTeam.name : "";
 
-    const [name, setName] = React.useState("");
-    const [description, setDescription] = React.useState("");
-    const [website, setWebsite] = React.useState("");
-    const [teamType, setTeamType] = React.useState("");
-    const [tags, setTags] = React.useState("");
+    const [name, setName] = React.useState(pathName === "/new" ? "" : currentTeam.name);
+    const [description, setDescription] = React.useState(pathName === "/new" ? "" : currentTeam.description);
+    const [website, setWebsite] = React.useState(pathName === "/new" ? "" : currentTeam.website);
+    const [teamType, setTeamType] = React.useState(pathName === "/new" ? [] : currentTeam.teamType);
+    const [tags, setTags] = React.useState(pathName === "/new" ? "" : currentTeam.tags);
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-
+        if(mode === "new") setTeam([...team,{name,description,website,teamType,tags}]);
+        else{
+            let teamCopy = [...team];
+            teamCopy[id] = {name,description,website,teamType,tags};
+            setTeam(teamCopy);
+        }
         navigate("/");
     }
 
@@ -47,7 +57,7 @@ const ManageTeam = () => {
                             <input className={styles.input} id="website" name="website" placeholder="Insert team website" onChange={({ target }) => setWebsite(target.value)} value={website} type="text" />
                         </div>
                         <div className={styles.entry}>
-                            <label className={styles.label} className={styles.label}>Team type</label>
+                            <label className={styles.label}>Team type</label>
                             <label className={styles.rlabel}>
                                 <input className={styles.radio} type="radio" value="real" checked={teamType === 'real'} onChange={({ target }) => setTeamType(target.value)} />
                                 Real

@@ -15,7 +15,6 @@ const Main = () => {
                 <Top5 />
                 <Popularity />
             </div>
-
         </div>
     )
 }

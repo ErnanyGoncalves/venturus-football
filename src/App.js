@@ -4,20 +4,23 @@ import Footer from './Footer';
 import Header from './Header';
 import Main from './Main';
 import ManageTeam from './ManageTeam';
+import { TeamStorage } from './TeamContext';
 
 function App() {
 
   return (
     <div className="bodyBackground">
       <BrowserRouter>
-        <Header />
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/new" element={<ManageTeam />} />
-            <Route path="/edit/:id" element={<ManageTeam />} />
-          </Routes>
-        </div>
+        <TeamStorage>
+          <Header />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/new" element={<ManageTeam />} />
+              <Route path="/edit/:id" element={<ManageTeam />} />
+            </Routes>
+          </div>
+        </TeamStorage>
       </BrowserRouter>
       <Footer />
     </div>
