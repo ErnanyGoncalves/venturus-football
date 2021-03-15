@@ -1,0 +1,111 @@
+.myTeams{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.myTeamsPanel{
+    min-height: 80vh;
+}
+
+.noTeams{
+    width: 100%;
+    min-height: 80vh;
+    font-size: 1rem;
+    display: flex;
+    color: #8b2070;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.noTeams p{
+    text-align: center;
+}
+
+.buttonSm{
+    background-image: linear-gradient(to bottom, #c10e4f , #8b2070);
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.buttonSm a{
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.buttonSm:hover{
+    -webkit-box-shadow: -1px 10px 20px -7px rgba(139,32,112,0.7); 
+    box-shadow: -1px 10px 20px -7px rgba(139,32,112,0.7);
+}
+
+.icon{
+    width: 1rem;
+    height: 1rem;
+    fill: #a14879;
+    cursor: pointer;
+}
+
+
+.table{
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.tableHeader{
+    display: flex;
+}
+
+.teamNameHeader{
+    width: 30%;
+}
+
+.descHeader{
+    width: 70%;
+}
+
+.tableBody{
+    display: flex;
+}
+
+.teamName{
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.desc{
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.controllers{
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+@media (max-width:40rem){
+    .myTeamsPanel{
+        min-height: 45vh;
+    }
+    .noTeams{
+        width: 100%;
+        min-height: 45vh;
+        font-size: 1rem;
+        color: #8b2070;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

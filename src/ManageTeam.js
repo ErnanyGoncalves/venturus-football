@@ -36,7 +36,7 @@ const ManageTeam = () => {
         <div className="panel">
             <h1 className="title">{mode === "new" ? "Create your team" : `Edit ${teamName} team`}</h1>
 
-            <div className={styles.hr}></div>
+            <div className="hr"></div>
 
             <form className={styles.form} onSubmit={handleSubmit}>
                 <h2 className="subtitle">Team Information</h2>
@@ -60,11 +60,11 @@ const ManageTeam = () => {
                             <label className={styles.label}>Team type</label>
                             <label className={styles.rlabel}>
                                 <input className={styles.radio} type="radio" value="real" checked={teamType === 'real'} onChange={({ target }) => setTeamType(target.value)} />
-                                Real
+                                <label className={styles.realLabel}>Real</label>
                             </label>
                             <label className={styles.rlabel}>
                                 <input className={styles.radio} type="radio" value="fantasy" checked={teamType === 'fantasy'} onChange={({ target }) => setTeamType(target.value)} />
-                                Fantasy
+                                <label className={styles.fantasyLabel}>Fantasy</label>
                             </label>
                         </div>
                         <div className={styles.entry}>

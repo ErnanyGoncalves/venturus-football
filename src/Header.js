@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styles from "./Header.module.css"
-import { ReactComponent as VenturusLogo } from "./logo.svg";
+import { ReactComponent as VenturusLogo } from "./Icons/logo.svg";
 
 const Header = () => {
     return (
