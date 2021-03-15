@@ -9,6 +9,8 @@ import { ReactComponent as UpDown } from "./Icons/up-down.svg"
 
 const MyTeams = () => {
     const { team, setTeam } = React.useContext(TeamContext);
+
+    // Função para excluir time por sua posição na lista
     const deleteTeam = (id) => {
         const confirmation = window.confirm(`Are you sure you want to delete ${team[id].name} team?`);
         if (confirmation) {
@@ -17,6 +19,7 @@ const MyTeams = () => {
         }
     }
 
+    // Ordenar times por nome
     const sortByName = () => {
         const sortedTeams = [...team].sort((a, b) => {
             if (a.name < b.name) return -1;
@@ -26,6 +29,7 @@ const MyTeams = () => {
         setTeam(sortedTeams);
     }
 
+    // Ordenar times por descrição
     const sortByDesc = () => {
         const sortedTeams = [...team].sort((a, b) => {
             if (a.description < b.description) return -1;

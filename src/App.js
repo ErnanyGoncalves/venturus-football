@@ -6,8 +6,9 @@ import Main from './Main';
 import ManageTeam from './ManageTeam';
 import { TeamStorage } from './TeamContext';
 
-function App() {
+// Componente com o contexto e rotas
 
+function App() {
   return (
     <div className="bodyBackground">
       <BrowserRouter>

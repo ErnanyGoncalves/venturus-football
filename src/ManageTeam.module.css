@@ -96,7 +96,7 @@
     border: none;
 }
 
-.saveBtn:active{
+.saveBtn:active,.saveBtn:focus{
     outline:none;
 }
 
