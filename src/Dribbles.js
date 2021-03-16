@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from "./Dribbles.module.css"
 
 const Dribbles = ({ players, dribbleAttempts, dribbleSuccess }) => {
 
@@ -51,18 +52,18 @@ const Dribbles = ({ players, dribbleAttempts, dribbleSuccess }) => {
 
     if (players.length !== 0) {
         return (
-            <div className={"panel"}>
-                <div>
-                    <h1 className="title">Most successful dribbler</h1>
-                    <img src={bestDribbler.photo} alt={bestDribbler.score} />
-                    <p>{bestDribbler.name}</p>
-                    <p>Score: {bestDribbler.score}</p>
+            <div className={styles.dribblePanel}>
+                <div className={styles.dribbleColumn}>
+                    <h1 className={styles.dribbleTitle}>Most successful dribbler</h1>
+                    <img className={styles.playerImg} src={bestDribbler.photo} alt={bestDribbler.score} />
+                    <p className={styles.playerName}>{bestDribbler.name}</p>
+                    <p className={styles.dribbleScore}>Score: {(Math.round(bestDribbler.score * 100) / 100).toFixed(2)}</p>
                 </div>
-                <div>
-                    <h1 className="title">Less successful dribbler</h1>
-                    <img src={worstDribbler.photo} alt={worstDribbler.score} />
-                    <p>{worstDribbler.name}</p>
-                    <p>Score: {worstDribbler.score}</p>
+                <div className={styles.dribbleColumn}>
+                    <h1 className={styles.dribbleTitle}>Less successful dribbler</h1>
+                    <img className={styles.playerImg} src={worstDribbler.photo} alt={worstDribbler.score} />
+                    <p className={styles.playerName}>{worstDribbler.name}</p>
+                    <p className={styles.dribbleScore}>Score: {(Math.round(worstDribbler.score * 100) / 100).toFixed(2)}</p>
                 </div>
 
             </div>
