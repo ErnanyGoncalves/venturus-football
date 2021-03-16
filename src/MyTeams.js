@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from "./MyTeams.module.css"
 import { TeamContext } from './TeamContext';
 import { ReactComponent as Pencil } from "./Icons/edit.svg"

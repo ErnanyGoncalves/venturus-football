@@ -3,14 +3,11 @@ import styles from "./Top5.module.css"
 
 const Top5 = ({ players }) => {
 
-    console.log(players);
-
-
     const youngest = (players) => {
         let yPlayers = [];
         for (let i = 0; i < 5; i++) {
             yPlayers.push(
-            <div>
+            <div key={`y${i}`}>
                 <p>{players[i].name}</p>
                 <p>{players[i].age}</p>
             </div>);
@@ -22,7 +19,7 @@ const Top5 = ({ players }) => {
     const oldest = (players) => {
         let oPlayers = [];
         for (let i = players.length-1; i > players.length - 6; i--) {
-            oPlayers.push(<div>
+            oPlayers.push(<div key={`o${i}`}>
                 <p>{players[i].name}</p>
                 <p>{players[i].age}</p>
             </div>);
