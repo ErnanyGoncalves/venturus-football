@@ -2,7 +2,7 @@ import React from 'react'
 import MyTeams from './MyTeams'
 import Top5 from './Top5'
 import styles from "./Main.module.css"
-import Popularity from './Popularity'
+import Dribbles from './Dribbles'
 
 // Componente com duas partes: a primeira com a lista de times cadastrados e a 2a com dados de times jogadores
 
@@ -15,7 +15,7 @@ const Main = () => {
 
             <div className={styles.column2}>
                 <Top5 />
-                <Popularity />
+                <Dribbles />
             </div>
         </div>
     )
