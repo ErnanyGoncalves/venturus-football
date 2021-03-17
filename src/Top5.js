@@ -7,10 +7,10 @@ const Top5 = ({ players }) => {
         let yPlayers = [];
         for (let i = 0; i < 5; i++) {
             yPlayers.push(
-            <div key={`y${i}`}>
-                <p>{players[i].name}</p>
-                <p>{players[i].age}</p>
-            </div>);
+                <div className={styles.slot} key={`y${i}`}>
+                    <p className={styles.pName}>{players[i].name}</p>
+                    <p className={styles.pAge}>{players[i].age} yrs</p>
+                </div>);
         }
 
         return yPlayers;
@@ -18,11 +18,12 @@ const Top5 = ({ players }) => {
 
     const oldest = (players) => {
         let oPlayers = [];
-        for (let i = players.length-1; i > players.length - 6; i--) {
-            oPlayers.push(<div key={`o${i}`}>
-                <p>{players[i].name}</p>
-                <p>{players[i].age}</p>
-            </div>);
+        for (let i = players.length - 1; i > players.length - 6; i--) {
+            oPlayers.push(
+                <div className={styles.slot} key={`o${i}`}>
+                    <p className={styles.pName}>{players[i].name}</p>
+                    <p className={styles.pAge}>{players[i].age} yrs</p>
+                </div>);
         }
         return oPlayers;
     }
@@ -32,21 +33,23 @@ const Top5 = ({ players }) => {
             <div className={"panel"}>
                 <h1 className="title">Top 5</h1>
                 <div className="hr"></div>
-                <div>
-                    <div>
-                        <p>Youngest players</p>
-
-                        {youngest(players)}
-
+                <div className={styles.topColumn}>
+                    <div className={styles.ageColumn}>
+                        <p className={styles.paragraphTop}>Youngest players</p>
+                        <div>
+                            {youngest(players)}
+                        </div>
                     </div>
-                    <div>
-                        <p>Oldest players</p>
-                        {oldest(players)}
+                    <div className={styles.ageColumn}>
+                        <p className={styles.paragraphTop}>Oldest players</p>
+                        <div>
+                            {oldest(players)}
+                        </div>
                     </div>
                 </div>
             </div>
         )
-    }else return null
+    } else return null
 }
 
 export default Top5

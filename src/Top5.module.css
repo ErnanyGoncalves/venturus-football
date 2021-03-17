@@ -1,0 +1,54 @@
+.topColumn{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.ageColumn{
+    margin-top: 1.5rem;
+    width: 48%;
+}
+
+.slot{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.pName{
+    font-weight: 300;
+}
+.paragraphTop{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.pName{
+    width: 52%;
+    font-size: 1.2rem;
+}
+.pAge{
+    width: 46%;
+    font-size: 1.2rem;
+}
+
+@media (max-width:40rem){
+
+
+    .topColumn{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .ageColumn{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+
+
+  }
