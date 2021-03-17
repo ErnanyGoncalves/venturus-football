@@ -46,11 +46,11 @@ const Dribbles = ({ players, dribbleAttempts, dribbleSuccess }) => {
             });
             setBestDribbler(bDribbler);
             setWorstDribbler(wDribbler);
-            console.log(bestDribbler,worstDribbler);
+            console.log("A",bestDribbler,worstDribbler);
         }
     }, [players, dribbleAttempts, dribbleSuccess]);
 
-    if (players.length !== 0) {
+    if (players.length !== 0 && bestDribbler != null && worstDribbler != null) {
         return (
             <div className={styles.dribblePanel}>
                 <div className={styles.dribbleColumn}>

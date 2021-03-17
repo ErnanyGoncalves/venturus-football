@@ -8,6 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 40vh;
   }
 
   .dribbleColumn{
@@ -17,23 +18,45 @@
   .dribbleTitle{
     color: white;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   .playerImg{
-    width: 5rem;
-    height: 5rem;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
+    display: block;
+    margin: 1rem auto 0.5rem auto;
   }
 
   .playerName{
     color: white;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .dribbleScore{
     color: white;
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width:40rem){
+    .dribbleTitle{
+      color: white;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .dribblePanel{
+      display: flex;
+      flex-direction: column;
+      height: 95vh;
+      justify-content: center;
+    }
+
+    .dribbleColumn{
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
   }

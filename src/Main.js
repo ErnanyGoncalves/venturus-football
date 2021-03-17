@@ -25,15 +25,15 @@ const Main = () => {
             .then(response => response.json())
             .then(json => {
                 const { response } = json;
-                
+
                 // Preparação dos dados a serem usados
                 let totalDribbleAttempts = 0;
                 let totalDribbleSuccess = 0;
-                
+
                 const playersData = response.map(p => {
                     totalDribbleAttempts += p.statistics[0].dribbles.attempts == null ? 0 : p.statistics[0].dribbles.attempts;
                     totalDribbleSuccess += p.statistics[0].dribbles.success == null ? 0 : p.statistics[0].dribbles.success;
-                    return( {
+                    return ({
                         name: p.player.name,
                         age: p.player.age,
                         photo: p.player.photo,
@@ -53,7 +53,6 @@ const Main = () => {
             .catch(err => {
                 console.log(err);
             });
-
     }, []);
 
 
