@@ -10,7 +10,7 @@ import { ReactComponent as UpDown } from "./Icons/up-down.svg"
 const MyTeams = () => {
     const { team, setTeam } = React.useContext(TeamContext);
 
-    
+
 
     const getTeams = () => {
         fetch("http://localhost:8000/", {
@@ -25,11 +25,15 @@ const MyTeams = () => {
 
 
     // Função para excluir time por sua posição na lista
-    const deleteTeam = (id) => {
-        const confirmation = window.confirm(`Are you sure you want to delete ${team[id].name} team?`);
+    const deleteTeam = ( id, name ) => {
+        const confirmation = window.confirm(`Are you sure you want to delete ${name} team?`);
         if (confirmation) {
-            team.splice(id, 1);
-            setTeam([...team]);
+            fetch(`http://localhost:8000/team/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: "Bearer " + id
+                }
+            }).then(() => getTeams());
         }
     }
 
@@ -53,9 +57,9 @@ const MyTeams = () => {
         setTeam(sortedTeams);
     }
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         getTeams();
-    },[]);
+    }, []);
 
     return (
         <div className={`panel ${styles.myTeamsPanel}`}>
@@ -90,9 +94,9 @@ const MyTeams = () => {
                             <p className={styles.teamName}>{team.name}</p>
                             <p className={styles.desc}>{team.description}</p>
                             <div className={styles.controllers}>
-                                <Trash onClick={() => deleteTeam(id, team)} className={styles.icon} />
+                                <Trash onClick={() => deleteTeam(team.id,team.name)} className={styles.icon} />
                                 <Share className={styles.icon} />
-                                <Link to={`/edit/${id}`}>
+                                <Link to={`/edit/${team.id}`}>
                                     <Pencil className={styles.icon} />
                                 </Link>
                             </div>

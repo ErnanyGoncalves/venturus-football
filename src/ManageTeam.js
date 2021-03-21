@@ -6,41 +6,88 @@ import { TeamContext } from './TeamContext'
 import Error from './Error';
 
 const ManageTeam = () => {
+    const pathName = window.location.pathname;
+    const mode = pathName === "/new" ? "new" : "edit";
+
     const { id } = useParams();
+
     const { team, setTeam } = React.useContext(TeamContext);
-    const currentTeam = team[id];
 
     const navigate = useNavigate();
+
+    const [h1, setH1] = React.useState("");
+
+    const [name, setName] = React.useState("");
+    const [description, setDescription] = React.useState("");
+    const [website, setWebsite] = React.useState("");
+    const [teamType, setTeamType] = React.useState("");
+    const [tags, setTags] = React.useState("");
 
     // Inicialização do componente e de seus estados. É verificado se a o componente é tratado como cadastro ou edição.
     // Se for para cadastro: o componente é adaptado para ser preenchido
     // Se for para edição: o componente é adaptado para ser editado
 
-    const pathName = window.location.pathname;
-    const mode = pathName === "/new" ? "new" : "edit";
-    const teamName = pathName !== "/new" ? currentTeam.name : "";
-
-    const [name, setName] = React.useState(pathName === "/new" ? "" : currentTeam.name);
-    const [description, setDescription] = React.useState(pathName === "/new" ? "" : currentTeam.description);
-    const [website, setWebsite] = React.useState(pathName === "/new" ? "" : currentTeam.website);
-    const [teamType, setTeamType] = React.useState(pathName === "/new" ? "" : currentTeam.teamType);
-    const [tags, setTags] = React.useState(pathName === "/new" ? [] : currentTeam.tags);
+    React.useEffect(() => {
+        if (mode === "edit") getTeam(id);
+        else setH1("Create your team");
+    }, []);
 
     const [error1, setError1] = React.useState(false);
     const [error2, setError2] = React.useState(false);
     const [error3, setError3] = React.useState(false);
 
+    const getTeam = (id) => {
+        fetch(`http://localhost:8000/team/${id}`, {
+            method: "GET",
+            cache: "no-store"
+        }).then(response => response.json())
+            .then(json => {
+                console.log(json);
+                const { name, description, website, type, tags } = json[0];
+                setName(name);
+                setDescription(description);
+                setWebsite(website);
+                setTeamType(type);
+                setTags(tags);
+
+                setH1(`Edit ${name} team`);
+            });
+    }
+
+    const createTeam = () => {
+        const data = { name, description, website, type: teamType, tags };
+        console.log("AAAAAA",data);
+        fetch("http://localhost:8000/team/new", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {'Content-Type': 'application/json'},
+        }).then(() => navigate("/"))
+    }
+
+    const editTeam = (id) => {
+        const data = { name, description, website, type: teamType, tags };
+        fetch(`http://localhost:8000/team/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {'Content-Type': 'application/json'},
+        }).then(() => navigate("/"))
+    }
+    // setTeam([...team, { name, description, website, teamType, tags }]);
     // Função ao salvar as informações (é verificado se os campos obrigatórios estão válidos)
     const handleSubmit = (ev) => {
         ev.preventDefault();
         if (name !== "" && website !== "" && teamType !== "") {
-            if (mode === "new") setTeam([...team, { name, description, website, teamType, tags }]);
+            if (mode === "new") createTeam();
             else {
+                editTeam(id);
+                /*
                 let teamCopy = [...team];
                 teamCopy[id] = { name, description, website, teamType, tags };
                 setTeam(teamCopy);
+                navigate("/");
+                */
             }
-            navigate("/");
+
         } else {
             name === "" ? setError1(true) : setError1(false);
             validateWebsite(website) ? setError2(true) : setError2(false);
@@ -57,7 +104,7 @@ const ManageTeam = () => {
 
     return (
         <div className="panel">
-            <h1 className="title">{mode === "new" ? "Create your team" : `Edit ${teamName} team`}</h1>
+            <h1 className="title">{h1}</h1>
 
             <div className="hr"></div>
 

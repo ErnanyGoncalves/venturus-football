@@ -17,7 +17,6 @@ exports.getTeam = (req, res, next) => {
 };
 
 exports.createTeam = (req, res, next) => {
-    console.log("Oie", req.body);
     const name = req.body.name;
     const description = req.body.description;
     const website = req.body.website;
@@ -25,6 +24,7 @@ exports.createTeam = (req, res, next) => {
     const tags = req.body.tags;
 
     const team = new Team(null, name, description, website, type, tags);
+    console.log("AAAAAAAAAAAAAAAA",team);
     team.createTeam()
         .then(() => {
             console.log("New team created!");
