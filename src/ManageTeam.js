@@ -2,7 +2,6 @@ import React from 'react'
 import { useNavigate } from 'react-router';
 import styles from "./ManageTeam.module.css"
 import { useParams } from 'react-router'
-import { TeamContext } from './TeamContext'
 import Error from './Error';
 
 const ManageTeam = () => {
@@ -10,8 +9,6 @@ const ManageTeam = () => {
     const mode = pathName === "/new" ? "new" : "edit";
 
     const { id } = useParams();
-
-    const { team, setTeam } = React.useContext(TeamContext);
 
     const navigate = useNavigate();
 
@@ -36,13 +33,14 @@ const ManageTeam = () => {
     const [error2, setError2] = React.useState(false);
     const [error3, setError3] = React.useState(false);
 
+
+    // Pega dados pelo id do time
     const getTeam = (id) => {
         fetch(`http://localhost:8000/team/${id}`, {
             method: "GET",
             cache: "no-store"
         }).then(response => response.json())
             .then(json => {
-                console.log(json);
                 const { name, description, website, type, tags } = json[0];
                 setName(name);
                 setDescription(description);
@@ -54,38 +52,33 @@ const ManageTeam = () => {
             });
     }
 
+    // Cria novo time
     const createTeam = () => {
         const data = { name, description, website, type: teamType, tags };
-        console.log("AAAAAA",data);
         fetch("http://localhost:8000/team/new", {
             method: "POST",
             body: JSON.stringify(data),
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
         }).then(() => navigate("/"))
     }
 
+    // Edita time do id X
     const editTeam = (id) => {
         const data = { name, description, website, type: teamType, tags };
         fetch(`http://localhost:8000/team/${id}`, {
             method: "PUT",
             body: JSON.stringify(data),
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
         }).then(() => navigate("/"))
     }
-    // setTeam([...team, { name, description, website, teamType, tags }]);
+
     // Função ao salvar as informações (é verificado se os campos obrigatórios estão válidos)
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        if (name !== "" && website !== "" && teamType !== "") {
+        if (name !== "" && validateWebsite(website) && teamType !== "") {
             if (mode === "new") createTeam();
             else {
                 editTeam(id);
-                /*
-                let teamCopy = [...team];
-                teamCopy[id] = { name, description, website, teamType, tags };
-                setTeam(teamCopy);
-                navigate("/");
-                */
             }
 
         } else {
@@ -95,13 +88,12 @@ const ManageTeam = () => {
         }
     }
 
-
     // Função validora do link do website
     const validateWebsite = (value) => {
         if (/(https?:\/\/)?(www\.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|(https?:\/\/)?(www\.)?(?!ww)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(value)) return false;
         else return true;
     }
-
+    
     return (
         <div className="panel">
             <h1 className="title">{h1}</h1>

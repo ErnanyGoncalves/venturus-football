@@ -3,7 +3,6 @@ const Team = require("./team");
 exports.getTeams = (req, res, next) => {
     Team.getTeams().then(result => {
         res.send(result[0]);
-        console.log(result[0]);
     }).catch(err => console.log(err));
 };
 
@@ -12,7 +11,6 @@ exports.getTeam = (req, res, next) => {
 
     Team.getTeam(paramId).then(result => {
         res.send(result[0]);
-        console.log(result[0]);
     }).catch(err => console.log(err));
 };
 
@@ -24,7 +22,6 @@ exports.createTeam = (req, res, next) => {
     const tags = req.body.tags;
 
     const team = new Team(null, name, description, website, type, tags);
-    console.log("AAAAAAAAAAAAAAAA",team);
     team.createTeam()
         .then(() => {
             console.log("New team created!");

@@ -10,22 +10,19 @@ import { ReactComponent as UpDown } from "./Icons/up-down.svg"
 const MyTeams = () => {
     const { team, setTeam } = React.useContext(TeamContext);
 
-
-
     const getTeams = () => {
         fetch("http://localhost:8000/", {
             method: "GET",
             cache: "no-store"
         }).then(response => response.json())
             .then(json => {
-                console.log(json);
                 setTeam([...json])
             })
     }
 
 
     // Função para excluir time por sua posição na lista
-    const deleteTeam = ( id, name ) => {
+    const deleteTeam = (id, name) => {
         const confirmation = window.confirm(`Are you sure you want to delete ${name} team?`);
         if (confirmation) {
             fetch(`http://localhost:8000/team/${id}`, {
@@ -94,7 +91,7 @@ const MyTeams = () => {
                             <p className={styles.teamName}>{team.name}</p>
                             <p className={styles.desc}>{team.description}</p>
                             <div className={styles.controllers}>
-                                <Trash onClick={() => deleteTeam(team.id,team.name)} className={styles.icon} />
+                                <Trash onClick={() => deleteTeam(team.id, team.name)} className={styles.icon} />
                                 <Share className={styles.icon} />
                                 <Link to={`/edit/${team.id}`}>
                                     <Pencil className={styles.icon} />
