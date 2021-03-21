@@ -7,6 +7,7 @@ export const TeamContext = React.createContext();
 export const TeamStorage = ({ children }) => {
     const [team, setTeam] = React.useState([]);
 
+
     return (
         <TeamContext.Provider value={{ team, setTeam }}>
             {children}

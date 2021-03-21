@@ -14,8 +14,6 @@ const Dribbles = ({ players, dribbleAttempts, dribbleSuccess }) => {
                 const attempts = dribbleAttempts === 0 ? 0 : (p.dribbles.attempts / dribbleAttempts);
                 const success = dribbleSuccess === 0 ? 0 : (p.dribbles.success / dribbleSuccess);
                 const dScore = success + attempts;
-                console.log(p);
-                console.log(dScore);
                 if (bDribbler == null) bDribbler={
                     id: i,
                     name: p.name,
@@ -46,7 +44,6 @@ const Dribbles = ({ players, dribbleAttempts, dribbleSuccess }) => {
             });
             setBestDribbler(bDribbler);
             setWorstDribbler(wDribbler);
-            console.log("A",bestDribbler,worstDribbler);
         }
     }, [players, dribbleAttempts, dribbleSuccess]);
 

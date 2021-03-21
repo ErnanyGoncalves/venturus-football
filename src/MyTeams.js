@@ -10,6 +10,20 @@ import { ReactComponent as UpDown } from "./Icons/up-down.svg"
 const MyTeams = () => {
     const { team, setTeam } = React.useContext(TeamContext);
 
+    
+
+    const getTeams = () => {
+        fetch("http://localhost:8000/", {
+            method: "GET",
+            cache: "no-store"
+        }).then(response => response.json())
+            .then(json => {
+                console.log(json);
+                setTeam([...json])
+            })
+    }
+
+
     // Função para excluir time por sua posição na lista
     const deleteTeam = (id) => {
         const confirmation = window.confirm(`Are you sure you want to delete ${team[id].name} team?`);
@@ -38,6 +52,10 @@ const MyTeams = () => {
         });
         setTeam(sortedTeams);
     }
+
+    React.useEffect(()=>{
+        getTeams();
+    },[]);
 
     return (
         <div className={`panel ${styles.myTeamsPanel}`}>
