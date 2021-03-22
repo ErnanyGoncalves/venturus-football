@@ -12,6 +12,10 @@ In this test, I was requested to build an application that allows the user to cr
 After cloning or downloading this repository, it's necessary to install the required dependencies using `npm i` in the project terminal. In order to make use of the API, go to **src/Main.js** and change the **"x-rapidapi-key"** value to your own API key. To start the project, just use `npm start` in the project terminal. And in case your wish is to put the project at the internet, just use the command `npm run build` in the project terminal.
 
   
+## Patchnotes (inatel-2.0.0)
+- It was created a simple server in order to connect to a MySQL database. Use the command `npm run server` in the project terminal;
+- The MySQL database uses only one "team" table to store the creation, deletion and editing of each team;
+- The project was totally adapted in order to work well with the server.
 
 ## Patchnotes (venturus-1.0.0)
 
